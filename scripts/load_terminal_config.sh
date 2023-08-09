@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cat ../scripts/gnome-terminal-config.dconf | dconf load /org/gnome/terminal/
+# Move to the dir where this script is
+base_path=$( dirname $( readlink -f $0 ) )
+cd $base_path
+
+cat ../data/gnome-terminal-config.dconf | dconf load /org/gnome/terminal/
 
 cat <<EOT >> ~/.bashrc
 

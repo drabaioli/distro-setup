@@ -15,4 +15,4 @@ sudo ./scripts/install_apt_packages.sh
 ./scripts/load_terminal_config.sh
 
 # Load vim configuration
-./scripts/load_terminal_config.sh
+./scripts/load_vim_config.sh

@@ -6,4 +6,4 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-DEBIAN_FRONTEND=noninteractive apt install -y git vim
+DEBIAN_FRONTEND=noninteractive apt update && apt install -y git vim

@@ -1,3 +1,7 @@
 #!/bin/bash
 
-dconf dump /org/gnome/terminal/ | grep -v font > ../scripts/gnome-terminal-config.dconf
+# Move to the dir where this script is
+base_path=$( dirname $( readlink -f $0 ) )
+cd $base_path
+
+dconf dump /org/gnome/terminal/ | grep -v font > ../data/gnome-terminal-config.dconf
