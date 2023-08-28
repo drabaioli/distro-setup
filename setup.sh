@@ -6,8 +6,6 @@ if [ "$EUID" -eq 0 ]
   exit
 fi
 
-MAIN_USER=`echo $USER`
-
 # Install required APT packages
 sudo ./scripts/install_apt_packages.sh
 
