@@ -6,12 +6,16 @@ cd $base_path
 
 cat ../data/gnome-terminal-config.dconf | dconf load /org/gnome/terminal/
 
+cp ../data/ps1 ~/.ps1
+
 cat <<EOT >> ~/.bashrc
 
-### Diego
-# Git branch on prompt
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
-export PS1='\${debian_chroot:+(\$debian_chroot)}\[\e[00;31m\]\u@\h\[\e[00m\] : \[\e[01;34m\]\w\[\e[00m\] \[\e[00;31m\]\$(parse_git_branch)\[\e[00m\]\$ '
+# DIEGO
+
+# Customize prompt
+source ~/.ps1
+
+# Use Vim as editor in git
+export VISUAL=vim
+export EDITOR="$VISUAL"
 EOT
