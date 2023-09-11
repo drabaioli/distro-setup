@@ -9,4 +9,5 @@ wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrains
 unzip $TMPFILE.zip
 rm $TMPFILE.zip
 mkdir ~/.fonts
+mv *.ttf ~/.fonts/
 fc-cache -fv
