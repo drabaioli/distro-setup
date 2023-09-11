@@ -1,0 +1,32 @@
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1 /'
+}
+is_ssh_shell() {
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    echo "@ssh"
+  # many other tests omitted
+  else
+    case $(ps -o comm= -p "$PPID") in
+      sshd|*/sshd) echo "@ssh";;
+    esac          
+  fi
+}
+
+cwd_time_line() { 
+  dir="[`pwd`]"   
+  date=`date +[%Y-%m-%d\ %H:%M:%S]`
+  # Print cwd at the beginning of the line and the timedate at the end
+  printf "%s%$(($COLUMNS-${#dir}))s" "$dir" "$date"
+}
+
+fg_color() { echo "\[\e[1;38;2;$1;$2;$3m\]"; }
+bg_color() { echo "\[\e[48;2;$1;$2;$3m\]"; }
+rst_color() { echo "\[\e[0m\]"; }
+PS1_WORK_DIR="$(fg_color 80 89 135)\$(cwd_time_line)"
+PS1_USER="$(bg_color 27 47 61)$(fg_color 95 173 85)\u"
+PS1_HOST="$(fg_color 255 120 10)$(is_ssh_shell)$(bg_color 32 92 87)$(fg_color 27 47 61)"
+PS1_GIT_BRANCH="$(fg_color 136 251 122)\$(git_branch)$(bg_color 16 28 36)$(fg_color 32 92 87)"
+export PS1="${debian_chroot:+($debian_chroot)}\n${PS1_WORK_DIR}\n${PS1_USER}${PS1_HOST} ${PS1_GIT_BRANCH}$(rst_color) "
+
+# Backup prompt
+# export PS1='\${debian_chroot:+(\$debian_chroot)}\[\e[00;31m\]\u@\h\[\e[00m\] : \[\e[01;34m\]\w\[\e[00m\] \[\e[00;31m\]\$(git_branch)\[\e[00m\]$ '
