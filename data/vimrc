@@ -1,6 +1,6 @@
 set nocp
 filetype plugin on
-:set pastetoggle=<f5>
+set pastetoggle=<f5>
 " tab navigation
 map <A-left>     :tabp<CR>
 map <A-right>    :tabn<CR>
@@ -15,3 +15,75 @@ if has("autocmd")
   set tabstop=2 shiftwidth=2 expandtab
   filetype plugin indent on
 endif
+
+" Statusline
+
+set laststatus=2
+set noshowmode    " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set t_Co=256
+set showcmd
+
+set background=dark
+
+" Git Branch
+let s:git_branch = ''
+function! SetStatuslineGit()
+  let l:filepath = expand('%:p:h')  " Get the full path of the file's directory
+  let l:cmd = 'cd ' . shellescape(l:filepath) . ' && git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d ''\n'''
+  silent let s:git_branch = system(l:cmd)
+  let s:git_branch = strlen(s:git_branch) > 0?'  '.s:git_branch.' ':' '
+endfunction
+
+function! GetStatuslineGit()
+  return s:git_branch
+endfunction
+
+" Recompute the git branch every time buffers are switched
+autocmd BufEnter * :call SetStatuslineGit()
+
+let g:currentmode={
+       \ 'n'      : 'NORMAL ',
+       \ 'v'      : 'VISUAL ',
+       \ 'V'      : 'V·LINE ',
+       \ "\<C-V>" : 'V·BLOCK ',
+       \ 'i'      : 'INSERT ',
+       \ 'R'      : 'R ',
+       \ 'Rv'     : 'V·REPLACE ',
+       \ 'c'      : 'COMMAND ',
+       \}
+
+set statusline=
+set statusline+=%1*
+set statusline+=\ \\ %{g:currentmode[mode()]}                      " Mode
+set statusline+=%2*
+set statusline+=
+set statusline+=%3*
+set statusline+=%{GetStatuslineGit()}                               " Git Branch
+set statusline+=%4*
+set statusline+=
+set statusline+=%#ModeMsg#
+set statusline+=\ %t\                                                " Filename
+set statusline+=%5*
+set statusline+=%{&modified?\"\ \":\"\"}                            " Modified
+set statusline+=%{&readonly?\"\ \":\"\"}                            " Readonly
+set statusline+=%#ModeMsg#
+set statusline+=
+set statusline+=%=                                                  " Move to the right
+set statusline+=%4*
+set statusline+=
+set statusline+=%3*
+set statusline+=\ %y                                                " Filetype
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}          " File encoding
+set statusline+=\ %{&fileformat==\"unix\"?\"\":\"\[\".&fileformat.\"\]\"}\ 
+set statusline+=%2*
+set statusline+=
+set statusline+=%1*
+set statusline+=\ %p%%
+set statusline+=\ %l/%L\ :\ %c
+set statusline+=\ 
+
+hi User1 cterm=reverse,bold
+hi User2 cterm=bold ctermbg=23
+hi User3 cterm=bold ctermbg=23
+hi User4 cterm=bold ctermfg=23
+hi User5 cterm=bold ctermfg=1
