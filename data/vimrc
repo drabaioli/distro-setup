@@ -1,6 +1,7 @@
+" copy/paste settings
 set nocp
-filetype plugin on
 set pastetoggle=<f5>
+
 " tab navigation
 map <A-left>     :tabp<CR>
 map <A-right>    :tabn<CR>
@@ -9,15 +10,19 @@ map <A-S-right>  :tabmove +1<CR>
 map <F2>         :Explore<CR>
 nnoremap <C-S-t> :tabnew<CR>
 inoremap <C-S-t> <Esc>:tabnew<CR>
+
 " indentation
 set tabstop=2 shiftwidth=2 expandtab
 filetype plugin indent on
+
 " reopen last position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+"===========
 " Statusline
+"===========
 
 set laststatus=2
 set noshowmode    " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -70,18 +75,17 @@ set statusline+=%{&readonly?\"\ \":\"\"}                            " Readonl
 set statusline+=%#ModeMsg#
 set statusline+=
 set statusline+=%=                                                  " Move to the right
+set statusline+=
+set statusline+=\ %y\                                               " Filetype
 set statusline+=%4*
 set statusline+=
 set statusline+=%3*
-set statusline+=\ %y                                                " Filetype
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}          " File encoding
-set statusline+=\ %{&fileformat==\"unix\"?\"\":\"\[\".&fileformat.\"\]\"}\ 
+set statusline+=\ %p%%
+set statusline+=\ 
 set statusline+=%2*
 set statusline+=
 set statusline+=%1*
-set statusline+=\ %p%%
-set statusline+=\ %l/%L\ :\ %c
-set statusline+=\ 
+set statusline+=\ %{strftime('%H:%M')}\ 
 
 hi User1 cterm=reverse,bold
 hi User2 cterm=bold ctermbg=23
