@@ -3,7 +3,12 @@
 Scripts and config required for setting up my workspace. It's a combination of gnome-terminal and vim configuration and basic apt packages.
 Taking inspiration from [pixegami/terminal-profile](https://github.com/pixegami/terminal-profile)
 
+## Terminal
+
 ![term](./img/terminal.png)
+
+## Vim
+
 ![vim](./img/vim_statusline.png)
 
 # Run
