@@ -34,4 +34,4 @@ On a pre-configured gnome-terminal you can use the `./scripts/generate_terminal_
 
 # Vim statusline and bash prompt
 
-This is achieved thgough some simple confivuration. Powerline was not used.
+This is achieved through simple configuration. Powerline was not used.
