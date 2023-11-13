@@ -13,6 +13,8 @@ Taking inspiration from [pixegami/terminal-profile](https://github.com/pixegami/
 
 # Run
 
+Note: Tested on Ubuntu 22.04.
+
 Launch the `./setup.sh` script as your user, not root. This will setup (my):
 - basic apt packages
 - gnome terminal shortcuts
