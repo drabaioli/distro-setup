@@ -13,6 +13,8 @@ Taking inspiration from [pixegami/terminal-profile](https://github.com/pixegami/
 
 # Run
 
+Note: Tested on Ubuntu 22.04.
+
 Launch the `./setup.sh` script as your user, not root. This will setup (my):
 - basic apt packages
 - gnome terminal shortcuts
@@ -34,4 +36,4 @@ On a pre-configured gnome-terminal you can use the `./scripts/generate_terminal_
 
 # Vim statusline and bash prompt
 
-This is achieved thgough some simple confivuration. Powerline was not used.
+This is achieved through simple configuration. Powerline was not used.
