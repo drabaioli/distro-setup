@@ -91,9 +91,14 @@ hi User3 cterm=bold ctermbg=23
 hi User4 cterm=bold ctermfg=23
 hi User5 cterm=bold ctermfg=1
 
+hi TabLine        cterm=none ctermbg=0 ctermfg=none
+hi TabLineSel     cterm=reverse,bold
+hi TabLineFill    cterm=bold
+
 "======
 " Netrw
 "======
+
 " Open Netrw in a new tab with F2
 map <F2> :tabnew \|Explore<CR>
 let g:netrw_keepdir = 0
