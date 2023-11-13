@@ -7,7 +7,6 @@ map <A-left>     :tabp<CR>
 map <A-right>    :tabn<CR>
 map <A-S-left>   :tabmove -1<CR>
 map <A-S-right>  :tabmove +1<CR>
-map <F2>         :Explore<CR>
 nnoremap <C-S-t> :tabnew<CR>
 inoremap <C-S-t> <Esc>:tabnew<CR>
 
@@ -24,7 +23,7 @@ endif
 " Statusline
 "===========
 
-set laststatus=2
+set laststatus=2  " Always show statusline
 set noshowmode    " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set t_Co=256
 set showcmd
@@ -80,12 +79,11 @@ set statusline+=\ %y\                                               " Filetype
 set statusline+=%4*
 set statusline+=
 set statusline+=%3*
-set statusline+=\ %p%%
-set statusline+=\ 
+set statusline+=\ %p%%\                                             " Position percentage
 set statusline+=%2*
 set statusline+=
 set statusline+=%1*
-set statusline+=\ %{strftime('%H:%M')}\ 
+set statusline+=\ %{strftime('%H:%M')}\                             " Print time
 
 hi User1 cterm=reverse,bold
 hi User2 cterm=bold ctermbg=23
@@ -96,3 +94,39 @@ hi User5 cterm=bold ctermfg=1
 hi TabLine        cterm=none ctermbg=0 ctermfg=none
 hi TabLineSel     cterm=reverse,bold
 hi TabLineFill    cterm=bold
+
+"======
+" Netrw
+"======
+
+" Open Netrw in a new tab with F2
+map <F2> :tabnew \|Explore<CR>
+let g:netrw_keepdir = 0
+let g:netrw_banner = 0
+let g:netrw_localcopydircmd = 'cp -r'
+
+function! NetrwMapping()
+  " Create a new file
+  nmap <buffer> cf %:w<CR>:buffer #<CR>
+  " Create a new directory
+  nmap <buffer> cd d
+  " Move/rename file
+  nmap <buffer> m R
+
+  " Mark a file
+  nmap <buffer> <TAB> mf
+  " Unmark everything
+  nmap <buffer> <S-TAB> mu
+  " Copy marked files in directory under cursor
+  nmap <buffer> fc mtmc
+  " Move marked files in directory under cursor
+  nmap <buffer> fm mtmm
+  " Shell command on marked files
+  nmap <buffer> fs mx
+endfunction
+
+" Load mappings when entering Netrw
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
