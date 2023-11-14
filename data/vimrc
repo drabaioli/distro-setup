@@ -38,16 +38,17 @@ set background=dark
 " Git Branch
 let s:git_branch = ''
 function! SetStatuslineGit()
-  let l:filepath = expand('%:p:h')  " Get the full path of the file's directory
+  if mode() == 't' " If in terminal mode, use vim's cwd
+    let l:filepath = getcwd()
+  else
+    let l:filepath = expand('%:p:h')  " Get the full path of the file's directory
+  endif
   let l:cmd = 'cd ' . shellescape(l:filepath) . ' && git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d ''\n'''
   silent let s:git_branch = system(l:cmd)
   let s:git_branch = strlen(s:git_branch) > 0?'  '.s:git_branch.' ':' '
 endfunction
 
 function! GetStatuslineGit()
-  if mode() == 't' " Don't return git branch if in terminal mode
-    return ''
-  endif
   return s:git_branch
 endfunction
 
