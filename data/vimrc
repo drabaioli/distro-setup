@@ -1,14 +1,18 @@
+"=================
+" General Settings
+"=================
+
 " copy/paste settings
 set nocp
 set pastetoggle=<f5>
 
 " tab navigation
-map <A-left>     :tabp<CR>
-map <A-right>    :tabn<CR>
-map <A-S-left>   :tabmove -1<CR>
-map <A-S-right>  :tabmove +1<CR>
-nnoremap <C-S-t> :tabnew<CR>
-inoremap <C-S-t> <Esc>:tabnew<CR>
+noremap <A-left>    :tabp<CR>
+noremap <A-right>   :tabn<CR>
+noremap <A-S-left>  :tabmove -1<CR>
+noremap <A-S-right> :tabmove +1<CR>
+nnoremap <C-S-t>    :tabnew<CR>
+inoremap <C-S-t>    <Esc>:tabnew<CR>
 
 " indentation
 set tabstop=2 shiftwidth=2 expandtab
@@ -18,6 +22,7 @@ filetype plugin indent on
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
 
 "===========
 " Statusline
@@ -40,6 +45,9 @@ function! SetStatuslineGit()
 endfunction
 
 function! GetStatuslineGit()
+  if mode() == 't' " Don't return git branch if in terminal mode
+    return ''
+  endif
   return s:git_branch
 endfunction
 
@@ -52,9 +60,10 @@ let g:currentmode={
        \ 'V'      : 'V·LINE ',
        \ "\<C-V>" : 'V·BLOCK ',
        \ 'i'      : 'INSERT ',
-       \ 'R'      : 'R ',
+       \ 'R'      : 'REPLACE ',
        \ 'Rv'     : 'V·REPLACE ',
        \ 'c'      : 'COMMAND ',
+       \ 't'      : 'TERMINAL ',
        \}
 
 set statusline=
@@ -95,6 +104,7 @@ hi TabLine        cterm=none ctermbg=0 ctermfg=none
 hi TabLineSel     cterm=reverse,bold
 hi TabLineFill    cterm=bold
 
+
 "======
 " Netrw
 "======
@@ -130,3 +140,18 @@ augroup netrw_mapping
   autocmd!
   autocmd filetype netrw call NetrwMapping()
 augroup END
+
+
+"=========
+" Terminal
+"=========
+
+" Open terminal on bottom split with F3
+map <F3> :botright terminal<CR>
+" Go to Terminal-Normal mode by pressing Esc twice
+" (Press 'i' to go back to terminal mode)
+tnoremap <Esc><Esc> <C-\><C-n>
+
+" Style statusline like other modes
+hi StatusLineTerm   ctermfg=none ctermbg=none cterm=reverse,bold
+hi StatusLineTermNC ctermfg=none ctermbg=none cterm=reverse
