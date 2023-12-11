@@ -156,3 +156,25 @@ tnoremap <Esc><Esc> <C-\><C-n>
 " Style statusline like other modes
 hi StatusLineTerm   ctermfg=none ctermbg=none cterm=reverse,bold
 hi StatusLineTermNC ctermfg=none ctermbg=none cterm=reverse
+
+
+"=========
+" CTags
+"=========
+
+" Generate tags file with this command: ctags-exuberant -R --exclude=build
+
+" load ctags files
+set tags=./tags;$HOME,tags;$HOME " look for tags file in current and working directory, then up till home
+
+" go to definition
+nnoremap gd <C-]>
+" go to or list definitions
+nnoremap gD g<C-]>
+" go back from definition
+nnoremap gb <C-t>
+
+" `.       go to the last change
+" ``       go to the last position before search/jump
+" CTRL-O   go to previous location
+" CTRL-I   go to the next location
