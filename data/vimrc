@@ -6,6 +6,9 @@
 set nocp
 set pastetoggle=<f5>
 
+" Toggle hybrid line number
+noremap <F1> :set nu! rnu!<CR>
+
 " tab navigation
 noremap <A-left>    :tabp<CR>
 noremap <A-right>   :tabn<CR>
