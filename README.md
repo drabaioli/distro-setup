@@ -22,6 +22,8 @@ Launch the `./setup.sh` script as your user, not root. This will setup (my):
 - bash prompt
 - vim configuration
 
+**Note:** After installation, restart the terminal.
+
 # Online execution
 
 Since the setup is happening on a clean machine (where git is not installed), you can run the following command to have it all done in one line:
@@ -29,6 +31,8 @@ Since the setup is happening on a clean machine (where git is not installed), yo
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/drabaioli/distro-setup/main/online_setup.sh)
 ```
+
+**Note:** After installation, restart the terminal.
 
 # Generate terminal configuration
 
