@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Move to the dir where this script is
-base_path=$( dirname $( readlink -f $0 ) )
-cd $base_path
+base_path=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+cd "$base_path"
 
 cat ../data/gnome-terminal-config.dconf | dconf load /org/gnome/terminal/
 
@@ -19,3 +19,5 @@ source ~/.ps1
 export VISUAL=vim
 export EDITOR="$VISUAL"
 EOT
+
+echo "Terminal configuration loaded successfully!"

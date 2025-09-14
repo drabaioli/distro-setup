@@ -8,7 +8,7 @@ fi
 
 # Component definitions
 COMPONENTS=(
-    "APT packages installation:sudo ./scripts/install_apt_packages.sh"
+    "Development tools installation:./scripts/install_development_tools.sh"
     "Nerd fonts installation:./scripts/install_nerd_fonts.sh"
     "Terminal configuration:./scripts/load_terminal_config.sh"
     "Vim configuration:./scripts/load_vim_config.sh"
@@ -124,6 +124,11 @@ fi
 
 echo ""
 echo "Starting installation..."
+echo ""
+
+# Update package list once for all scripts
+echo "=== Updating package list ==="
+sudo apt update
 echo ""
 
 # Execute selected components
