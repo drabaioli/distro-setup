@@ -1,0 +1,15 @@
+[user]
+  email = drabaioli@gmail.com
+  name = Diego Andres Rabaioli
+[merge]
+  keepBackup = false;
+  tool = p4merge
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
+[diff]
+  tool = p4merge
+[difftool "p4merge"]
+  cmd = p4merge "$LOCAL" "$REMOTE"
