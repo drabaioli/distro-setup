@@ -26,9 +26,12 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" move screen up and down without moving curson
+" move screen up and down without moving cursor
 noremap <C-up>   <C-Y>
 noremap <C-down> <C-E>
+
+" command-line completion
+set wildmenu
 
 "===========
 " Statusline
