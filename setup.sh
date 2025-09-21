@@ -12,6 +12,7 @@ COMPONENTS=(
     "Nerd fonts installation:./scripts/install_nerd_fonts.sh"
     "Terminal configuration:./scripts/load_terminal_config.sh"
     "Vim configuration:./scripts/load_vim_config.sh"
+    "Desktop background:./scripts/set_desktop_background.sh data/wallpaper.jpg"
 )
 
 # Initialize selection array
