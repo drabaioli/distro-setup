@@ -13,6 +13,7 @@ COMPONENTS=(
     "Terminal configuration:./scripts/load_terminal_config.sh"
     "Vim configuration:./scripts/load_vim_config.sh"
     "Desktop background:./scripts/set_desktop_background.sh data/wallpaper.jpg"
+    "Login screen background:./scripts/set_login_background.sh data/wallpaper.jpg"
 )
 
 # Initialize selection array
