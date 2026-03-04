@@ -19,27 +19,35 @@ else
     # Generate tmp filename
     TMPFILE=$(mktemp)
 
-    # Get GNOME Shell version
-    GNOME_VERSION=$(gnome-shell --version | cut -d' ' -f3 | cut -d'.' -f1)
-
     # Download the extension from GitHub (latest release)
     cd /tmp
-    wget "https://github.com/mgalgs/gnome-shell-system-monitor-applet/archive/refs/heads/master.zip" -O $TMPFILE.zip
-    unzip -q $TMPFILE.zip
-    rm $TMPFILE.zip
+    wget "https://github.com/mgalgs/gnome-shell-system-monitor-applet/archive/refs/heads/master.zip" -O "$TMPFILE.zip"
+    unzip -q "$TMPFILE.zip"
+    rm "$TMPFILE.zip"
 
     # Move extension to the correct location
-    mv gnome-shell-system-monitor-applet-master "$EXTENSION_DIR"
+    # The repo extracts to gnome-shell-system-monitor-next-applet-master/ and the
+    # actual extension lives in a subdirectory matching the UUID.
+    mv "gnome-shell-system-monitor-next-applet-master/$EXTENSION_UUID" "$EXTENSION_DIR"
+    rm -rf gnome-shell-system-monitor-next-applet-master
 
     echo "Extension installed to $EXTENSION_DIR"
 fi
 
-# Enable the extension
+# Apply saved settings
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SETTINGS_FILE="$SCRIPT_DIR/../data/gnome_system_monitor_settings.dconf"
+if [ -f "$SETTINGS_FILE" ]; then
+    dconf load /org/gnome/shell/extensions/system-monitor-next-applet/ < "$SETTINGS_FILE"
+    echo "Settings applied from $SETTINGS_FILE"
+fi
+
+# Enable the extension (may fail on first install if GNOME hasn't detected it yet)
 gnome-extensions enable "$EXTENSION_UUID" 2>/dev/null || true
 
 echo ""
 echo "System Monitor Next extension installed successfully!"
 echo ""
-echo "IMPORTANT: You need to restart GNOME Shell for the extension to appear:"
-echo "  - Press Alt+F2, type 'r' and press Enter"
-echo "  - Or log out and log back in"
+echo "NOTE: If the extension doesn't appear:"
+echo "  1. Log out and log back in"
+echo "  2. Run: gnome-extensions enable $EXTENSION_UUID"
