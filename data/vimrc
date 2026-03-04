@@ -26,12 +26,9 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" move screen up and down without moving cursor
+" move screen up and down without moving curson
 noremap <C-up>   <C-Y>
 noremap <C-down> <C-E>
-
-" command-line completion
-set wildmenu
 
 "===========
 " Statusline
@@ -130,19 +127,21 @@ function! NetrwMapping()
   nmap <buffer> cf %:w<CR>:buffer #<CR>
   " Create a new directory
   nmap <buffer> cd d
-  " Move/rename file
-  nmap <buffer> m R
+  " Rename file
+  nmap <buffer> fr R
+  " Move file
+  nmap <buffer> fm R
 
-  " Mark a file
-  nmap <buffer> <TAB> mf
-  " Unmark everything
-  nmap <buffer> <S-TAB> mu
-  " Copy marked files in directory under cursor
-  nmap <buffer> fc mtmc
-  " Move marked files in directory under cursor
-  nmap <buffer> fm mtmm
-  " Shell command on marked files
-  nmap <buffer> fs mx
+"  " Mark a file
+"  nmap <buffer> <TAB> mf
+"  " Unmark everything
+"  nmap <buffer> <S-TAB> mu
+"  " Copy marked files in directory under cursor
+"  nmap <buffer> fc mtmc
+"  " Move marked files in directory under cursor
+"  nmap <buffer> fm mtmm
+"  " Shell command on marked files
+"  nmap <buffer> fs mx
 endfunction
 
 " Load mappings when entering Netrw
