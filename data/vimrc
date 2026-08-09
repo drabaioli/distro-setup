@@ -14,8 +14,15 @@ noremap <A-left>    :tabp<CR>
 noremap <A-right>   :tabn<CR>
 noremap <A-S-left>  :tabmove -1<CR>
 noremap <A-S-right> :tabmove +1<CR>
-nnoremap <C-S-t>    :tabnew<CR>
-inoremap <C-S-t>    <Esc>:tabnew<CR>
+" Disabled: VTE 0.68 (GNOME Terminal 3.44, Ubuntu 22.04) has no modifyOtherKeys
+" support, so Ctrl+Shift+T is sent down the pty as the same 0x14 byte as plain
+" Ctrl+T -- vim can never receive it as distinct. Ctrl+T itself is taken by
+" tmux (new window), so there is no key left to bind here for now.
+" Re-check after a distro upgrade with:
+"     strings /usr/lib/x86_64-linux-gnu/libvte-2.91.so.0 | grep -c modifyOtherKeys
+" A non-zero count means these two lines can be uncommented.
+"nnoremap <C-S-t>    :tabnew<CR>
+"inoremap <C-S-t>    <Esc>:tabnew<CR>
 
 " indentation
 set tabstop=2 shiftwidth=2 expandtab
