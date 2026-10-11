@@ -18,3 +18,26 @@ terminal-window headerbar button:active,
 terminal-window headerbar button:checked {
   background: rgb(40, 58, 70);
 }
+
+/* Keep the rounded corners of maximized and edge-tiled windows. Yaru squares them,
+   but with the screen gaps (screen-gaps extension) they no longer touch the screen edge.
+   Same radius as Yaru's floating windows (12px, top corners). */
+.maximized decoration,
+.tiled decoration,
+.tiled-top decoration,
+.tiled-right decoration,
+.tiled-bottom decoration,
+.tiled-left decoration {
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.75);
+}
+
+.maximized headerbar,
+.tiled headerbar,
+.tiled-top headerbar,
+.tiled-right headerbar,
+.tiled-bottom headerbar,
+.tiled-left headerbar {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
