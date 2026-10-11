@@ -1,0 +1,39 @@
+@import url("/usr/share/themes/Yaru-dark/gnome-shell/gnome-shell.css");
+
+/* Top bar: translucent background */
+#panel {
+  background-color: rgba(19, 19, 19, 0.55);
+}
+
+/* Top bar items: subtle rounded rectangular containers */
+#panel .panel-button {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.07);
+  margin: 3px 2px;
+}
+
+#panel .panel-button:hover {
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+#panel .panel-button:active,
+#panel .panel-button:overview,
+#panel .panel-button:checked,
+#panel .panel-button:focus {
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Yaru highlights the clock's inner label instead of the button, which
+   draws a second box inside ours; keep the label flat */
+#panel .panel-button.clock-display .clock,
+#panel .panel-button:hover.clock-display .clock,
+#panel .panel-button:active.clock-display .clock,
+#panel .panel-button:overview.clock-display .clock,
+#panel .panel-button:checked.clock-display .clock,
+#panel .panel-button:focus.clock-display .clock {
+  border: 0;
+  box-shadow: none;
+}

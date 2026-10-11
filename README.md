@@ -21,6 +21,7 @@ Launch the `./setup.sh` script as your user, not root. This will setup (my):
 - gnome terminal colors
 - bash prompt
 - vim configuration
+- GNOME look: translucent top bar, blur, gaps around maximized/tiled windows
 
 **Note:** After installation, restart the terminal.
 
