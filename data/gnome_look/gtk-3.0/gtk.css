@@ -1,0 +1,20 @@
+/* gnome-terminal: header bar and its buttons in the terminal background color (data/gnome-terminal-config.dconf) */
+terminal-window headerbar {
+  background: rgb(16, 28, 36);
+}
+
+terminal-window headerbar button,
+terminal-window headerbar button.titlebutton {
+  background: rgb(16, 28, 36);
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Keep hover/pressed feedback, since the buttons no longer stand out */
+terminal-window headerbar button:hover {
+  background: rgb(30, 46, 56);
+}
+terminal-window headerbar button:active,
+terminal-window headerbar button:checked {
+  background: rgb(40, 58, 70);
+}

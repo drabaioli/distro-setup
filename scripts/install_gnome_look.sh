@@ -5,6 +5,7 @@
 #  - Blur my Shell: blur behind the top bar
 #  - screen-gaps (own extension): keeps maximized/tiled windows away from screen edges
 #  - Tiling Assistant: gap between tiled windows
+#  - GTK3 CSS: gnome-terminal header bar and its buttons in the terminal background color
 # Restart the shell afterwards (Alt+F2, r, Enter) to load the new extensions.
 
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
@@ -46,6 +47,15 @@ echo "Installing shell theme..."
 sudo apt install -y gnome-shell-extensions
 mkdir -p ~/.themes/Yaru-dark-custom/gnome-shell
 cp "$DATA_DIR/gnome_look/theme/gnome-shell.css" ~/.themes/Yaru-dark-custom/gnome-shell/gnome-shell.css
+
+# GTK3 CSS (gnome-terminal header bar). Keep a backup of an existing, different file.
+echo "Installing GTK3 CSS..."
+mkdir -p ~/.config/gtk-3.0
+if [ -f ~/.config/gtk-3.0/gtk.css ] && ! cmp -s "$DATA_DIR/gnome_look/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css; then
+    cp ~/.config/gtk-3.0/gtk.css ~/.config/gtk-3.0/gtk.css.bak
+    echo "Existing gtk.css saved as gtk.css.bak"
+fi
+cp "$DATA_DIR/gnome_look/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
 
 # Own extension: always refresh from the repo
 echo "Installing screen-gaps extension..."
