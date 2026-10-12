@@ -37,3 +37,11 @@
   border: 0;
   box-shadow: none;
 }
+
+/* Top bar menus (calendar, system menu, indicators): translucent; the
+   menu-blur extension blurs what is behind them. Keep the radius in sync
+   with CORNER_RADIUS in menu-blur@distro-setup/extension.js */
+.popup-menu-content {
+  border-radius: 10px;
+  background-color: rgba(29, 29, 29, 0.6);
+}

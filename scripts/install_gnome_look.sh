@@ -3,6 +3,7 @@
 # Custom look for GNOME Shell 42 (Ubuntu 22.04, X11):
 #  - Yaru-dark-custom shell theme: translucent top bar, rounded containers for its items
 #  - Blur my Shell: blur behind the top bar
+#  - menu-blur (own extension): translucent, blurred, rounded top bar menus (calendar etc.)
 #  - screen-gaps (own extension): keeps maximized/tiled windows away from screen edges
 #  - Tiling Assistant: gap between tiled windows
 #  - GTK3 CSS: gnome-terminal header bar and its buttons in the terminal background color
@@ -57,10 +58,12 @@ if [ -f ~/.config/gtk-3.0/gtk.css ] && ! cmp -s "$DATA_DIR/gnome_look/gtk-3.0/gt
 fi
 cp "$DATA_DIR/gnome_look/gtk-3.0/gtk.css" ~/.config/gtk-3.0/gtk.css
 
-# Own extension: always refresh from the repo
-echo "Installing screen-gaps extension..."
-rm -rf "$EXT_DIR/screen-gaps@distro-setup"
-cp -r "$DATA_DIR/gnome_look/screen-gaps@distro-setup" "$EXT_DIR/"
+# Own extensions: always refresh from the repo
+for uuid in screen-gaps@distro-setup menu-blur@distro-setup; do
+    echo "Installing $uuid extension..."
+    rm -rf "$EXT_DIR/$uuid"
+    cp -r "$DATA_DIR/gnome_look/$uuid" "$EXT_DIR/"
+done
 
 # Blur my Shell v47 and Tiling Assistant v36 are the last releases for GNOME 42
 install_ego_extension "blur-my-shell@aunetx" 42627
@@ -73,6 +76,7 @@ dconf write /org/gnome/shell/extensions/user-theme/name "'Yaru-dark-custom'"
 for uuid in user-theme@gnome-shell-extensions.gcampax.github.com \
             blur-my-shell@aunetx \
             screen-gaps@distro-setup \
+            menu-blur@distro-setup \
             tiling-assistant@leleat-on-github; do
     enable_extension "$uuid"
 done
