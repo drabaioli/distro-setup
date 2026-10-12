@@ -133,14 +133,22 @@ class MenuBlur {
     }
 
     // Windows are cloned one by one: a clone of the whole window group does
-    // not draw them. Rebuilt on each open since the stack changes.
+    // not draw them. Only the window texture is cloned, not the actor, so
+    // drop shadows do not spill over the menu's rounded corners. Rebuilt on
+    // each open since the stack changes.
     _cloneWindows() {
         this._windowClones.forEach(c => c.destroy());
         this._windowClones = global.get_window_actors()
             .filter(actor => actor.visible && actor.mapped)
             .map(actor => {
-                const clone = new Clutter.Clone({ source: actor });
-                clone.set_position(actor.x, actor.y);
+                const rect = actor.meta_window.get_buffer_rect();
+                const clone = new Clutter.Actor({
+                    content: actor.get_texture(),
+                    x: rect.x,
+                    y: rect.y,
+                    width: rect.width,
+                    height: rect.height,
+                });
                 this._layer.add_child(clone);
                 return clone;
             });
