@@ -22,6 +22,7 @@ Launch the `./setup.sh` script as your user, not root. This will setup (my):
 - bash prompt
 - vim configuration
 - GNOME look: translucent top bar and menus, blur, gaps around maximized/tiled windows, gnome-terminal header bar matching the terminal background
+- Conky: minimal right-aligned desktop widget with clock, date and CPU/RAM/disk usage
 
 **Note:** After installation, restart the terminal.
 

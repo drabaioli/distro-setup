@@ -17,6 +17,7 @@ COMPONENTS=(
     "Login screen background:./scripts/set_login_background.sh data/wallpaper.jpg"
     "GNOME System Monitor extension:./scripts/install_gnome_system_monitor.sh"
     "GNOME look (top bar theme, blur, window gaps):./scripts/install_gnome_look.sh"
+    "Conky desktop widget:./scripts/install_conky.sh"
 )
 
 # Initialize selection array
