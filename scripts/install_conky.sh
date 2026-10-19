@@ -9,7 +9,7 @@ CONF_DIR="$HOME/.config/conky"
 sudo apt install -y conky-all fonts-ubuntu fonts-dejavu-core
 
 mkdir -p "$CONF_DIR" "$HOME/.config/autostart"
-cp "$DATA_DIR/conky.conf" "$DATA_DIR/bars.lua" "$CONF_DIR/"
+cp "$DATA_DIR/conky.conf" "$DATA_DIR/panels.lua" "$CONF_DIR/"
 
 cat > "$HOME/.config/autostart/conky.desktop" <<DESKTOP
 [Desktop Entry]
