@@ -4,7 +4,7 @@ local W = 520
 local SANS, ICONS = 'Ubuntu', 'JetBrainsMono Nerd Font'
 local FG, DIM = {0.95, 0.96, 1}, {0.52, 0.58, 0.74}
 local ACCENT = {0.10, 0.33, 0.72}
-local PAD, RADIUS = 32, 22
+local PAD = 32
 local TOP = PAD - 13  -- 13px = gap between baseline and cap height of the 24px headings
 
 local function icon(code) return utf8.char(code) end
@@ -85,15 +85,8 @@ function conky_draw_widget()
     local cr = cairo_create(cs)
 
     -- Dark navy panel behind everything
-    local pw, ph = conky_window.width, conky_window.height
-    cairo_new_sub_path(cr)
-    cairo_arc(cr, pw - RADIUS, RADIUS, RADIUS, -math.pi / 2, 0)
-    cairo_arc(cr, pw - RADIUS, ph - RADIUS, RADIUS, 0, math.pi / 2)
-    cairo_arc(cr, RADIUS, ph - RADIUS, RADIUS, math.pi / 2, math.pi)
-    cairo_arc(cr, RADIUS, RADIUS, RADIUS, math.pi, 3 * math.pi / 2)
-    cairo_close_path(cr)
     cairo_set_source_rgba(cr, 0.01, 0.02, 0.07, 0.45)
-    cairo_fill(cr)
+    cairo_paint(cr)
     cairo_translate(cr, PAD, TOP)
 
     -- Clock
