@@ -58,6 +58,13 @@ if gdm-settings --help 2>/dev/null | grep -q "background"; then
     sudo gdm-settings set background-image "$PERMANENT_PATH"
 fi
 
+# gdm-settings can switch the GDM theme to a stock GNOME one (blue user box);
+# keep the Yaru theme, which is what honours the background set above
+YARU_GDM_THEME="/usr/share/gnome-shell/theme/Yaru/gnome-shell-theme.gresource"
+if [ -f "$YARU_GDM_THEME" ]; then
+    sudo update-alternatives --set gdm-theme.gresource "$YARU_GDM_THEME"
+fi
+
 echo "Login screen background set successfully"
 echo "You may need to restart GDM or reboot to see the changes:"
 echo "  sudo systemctl restart gdm3"
