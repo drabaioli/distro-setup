@@ -1,0 +1,7 @@
+{
+  "uuid": "screen-gaps@distro-setup",
+  "name": "Screen Gaps",
+  "description": "Shrinks the work area so maximized and tiled windows keep a gap from screen edges and the top bar.",
+  "shell-version": ["42"],
+  "version": 1
+}

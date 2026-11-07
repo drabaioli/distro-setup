@@ -1,0 +1,7 @@
+{
+  "uuid": "menu-blur@distro-setup",
+  "name": "Menu Blur",
+  "description": "Blurs what is behind the top bar menus (calendar, system menu, indicators), including open windows, with rounded corners.",
+  "shell-version": ["42"],
+  "version": 1
+}
